@@ -13,7 +13,7 @@ class TestCreateTests < MiniTest::Unit::TestCase
     @harvester = IndexTester::HarvestData.new(IndexTester::DataBase.new, @queries)
   end
 
-  def test_table_sizes
+  def test_queries
     assert_equal 2, @harvester.record_counts[@harvester.tables[0]]
     assert_equal false, @harvester.missing_indexes[2]
     assert_equal 1, @harvester.scanned_counts[2]

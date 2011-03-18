@@ -16,6 +16,7 @@ end
 class TestHarvestData < MiniTest::Unit::TestCase
   def setup
     IndexTester::HarvestData.any_instance.stubs(:establish_connection).returns(nil)
+    IndexTester::HarvestData.any_instance.stubs(:get_explains).returns(stub_explains)
     IndexTester::HarvestData.any_instance.stubs(:record_counts).returns(Hash['orders',2])
     IndexTester::HarvestData.any_instance.stubs(:missing_indexes).returns([true,true,false])
     IndexTester::HarvestData.any_instance.stubs(:scanned_counts).returns([2,2,1])
@@ -38,4 +39,9 @@ class TestHarvestData < MiniTest::Unit::TestCase
     assert_equal [true, true, false], @harvester.missing_indexes
     assert_equal [2,2,1], @harvester.scanned_counts
   end
+  def stub_explains
+    ['TABLE orders',
+     'TABLE orders',
+     'TABLE orders WITH INDEX onum']
+  end  
 end
