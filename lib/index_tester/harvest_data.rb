@@ -22,7 +22,6 @@ module IndexTester
 
     def scanned_counts
       get_explains.map {|exp| @db.scanned_counts_of_explain(exp)}
-      [2,2,1]
     end
 
     def returned_counts
