@@ -1,1 +1,5 @@
 == Under Construction
+
+Run 
+  ruby test/index_tester/run_tests.rb 
+for a heavily stubbed and partial execution of the project.
