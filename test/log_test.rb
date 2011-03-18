@@ -14,18 +14,19 @@ end
 
 class TestHarvestData < MiniTest::Unit::TestCase
   def setup
-    db = IndexTester::DataBase.new
     @queries = IndexTester::ReadLog.new('fixture/query.log').unique_selects
-    @harvester = IndexTester::HarvestData.new(db, @queries)
+    @harvester = IndexTester::HarvestData.new(IndexTester::DataBase.new, @queries)
   end
 
   def test_table_sizes
-    assert_equal 1, @harvester.get_record_counts.size
-    assert_operator 0, :<, @harvester.get_record_counts['orders']
+    assert_equal 1, @harvester.record_counts.size
+    assert_operator 0, :<, @harvester.record_counts['orders']
   end
   def test_explain
-    assert_equal 3,@harvester.get_explains.size
-    assert_equal '',@harvester.get_explains
+    assert_equal 3, @harvester.get_explains.size
+    assert_equal 'TABLE orders', @harvester.get_explains[0]
+    assert_equal 'TABLE orders', @harvester.get_explains[1]
+    assert_equal 'TABLE orders WITH INDEX onum', @harvester.get_explains[2]
   end
   def test_explain_detail
     assert_equal [true, true, false], @harvester.missing_indexes
