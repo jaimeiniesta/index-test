@@ -1,0 +1,4 @@
+select * from orders;,the stack trace,2011-03-13
+select order_num from orders;,other stack trace,2011-03-13
+select order_num from orders;,other stack trace,2011-03-13
+select * from orders where order_num = 101;,third stack trace,2011-03-13

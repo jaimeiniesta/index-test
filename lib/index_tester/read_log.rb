@@ -59,7 +59,7 @@ module IndexTester
     def initialize
       ActiveRecord::Base.establish_connection(
         :adapter => 'sqlite3',
-        :database => '../db/test')
+        :database => '../../db/test')
     end
 
     def execute(sql)
