@@ -5,6 +5,10 @@ module IndexTester
     #mixes orm and db logic
     #needs to have component for db
     def initialize
+      establish_connection
+    end
+
+    def establish_connection
       ActiveRecord::Base.establish_connection(
         :adapter => 'sqlite3',
         :database => '../../db/test')

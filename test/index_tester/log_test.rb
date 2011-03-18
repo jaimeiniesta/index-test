@@ -15,6 +15,7 @@ end
 
 class TestHarvestData < MiniTest::Unit::TestCase
   def setup
+    IndexTester::HarvestData.any_instance.stubs(:establish_connection).returns(nil)
     IndexTester::HarvestData.any_instance.stubs(:record_counts).returns(Hash['orders',2])
     IndexTester::HarvestData.any_instance.stubs(:missing_indexes).returns([true,true,false])
     IndexTester::HarvestData.any_instance.stubs(:scanned_counts).returns([2,2,1])
