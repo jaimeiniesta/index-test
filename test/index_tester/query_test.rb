@@ -10,7 +10,8 @@ class TestCreateTests < MiniTest::Unit::TestCase
     IndexTester::HarvestData.any_instance.stubs(:missing_indexes).returns([true,true,false])
     IndexTester::HarvestData.any_instance.stubs(:scanned_counts).returns([2,2,1])
     IndexTester::HarvestData.any_instance.stubs(:returned_counts).returns([2,2,1])
-    @queries = IndexTester::ReadLog.new('fixture/query.log').unique_selects
+    fixture_log = File.dirname(__FILE__) + '/fixture/query.log'
+    @queries = IndexTester::ReadLog.new(fixture_log).unique_selects
     @harvester = IndexTester::HarvestData.new(IndexTester::DataBase.new, @queries)
   end
 
