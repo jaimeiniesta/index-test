@@ -27,7 +27,7 @@ class TestCreateTests < MiniTest::Unit::TestCase
   end
   def test_making_tests
     test_code = @tests.test_code
-    File.open('generated_test.rb', 'w') {|f| f.puts test_code}
+    File.open(File.dirname(__FILE__) + '/generated_test.rb', 'w') {|f| f.puts test_code}
     refute_equal '', test_code
   end
 end
