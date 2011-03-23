@@ -1,5 +1,28 @@
-== Under Construction
+= Under Construction
 
-Run 
+
+== Prerequisites
+
+* Ruby 1.9.2
+* install gems listed in Gemfile
+
+
+== How to Run 
+
+From root directory, run
   ruby test/index_tester/run_tests.rb 
-for a heavily stubbed and partial execution of the project.
+for a heavily stubbed and partial execution of the project.  This will generate a new test file which you can run with
+  ruby test/index_tester/run_generated_tests.rb 
+This second test file will have failed tests to show that the fixture queries are not fast enough.
+
+
+== RMU Versions
+
+* 1.0  first submission
+* 1.1  added generation of query tests
+
+
+== Future Enhancements
+
+1.  Mininum query rating now hard-coded in generate_tests.rb.  Needs to be a parameter.
+2.  Add feature #1 to write query log file
