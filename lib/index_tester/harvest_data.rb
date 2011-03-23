@@ -1,5 +1,9 @@
 module IndexTester
   class HarvestData
+    include QueryRating
+
+    attr_reader :queries
+
     def initialize(db, queries)
       @db, @queries = db, queries
     end
@@ -29,11 +33,10 @@ module IndexTester
     end
 
     def rating(query_index)
-      return 100 if record_counts[tables[query_index]] <= 1
-      return 0 if missing_indexes[query_index]
-      ratio = scanned_counts[query_index].to_f / record_counts[tables[query_index]]
-      part1 = ((ratio * -100) + 100) / 2
-      part1 + (50 * (returned_counts[query_index].to_f / scanned_counts[query_index]))
+      query_rating(total_count:    record_counts[tables[query_index]],
+                   no_indexes:     missing_indexes[query_index],
+                   scanned_count:  scanned_counts[query_index],
+                   returned_count: returned_counts[query_index])
     end
   end
 end

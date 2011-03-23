@@ -1,6 +1,8 @@
 require_relative '../../lib/index_tester/read_log'
+require_relative '../../lib/index_tester/query_rating'
 require_relative '../../lib/index_tester/harvest_data'
 require_relative '../../lib/index_tester/data_base'
+require_relative '../../lib/index_tester/generate_tests'
 
 class TestCreateTests < MiniTest::Unit::TestCase
   def setup
@@ -13,6 +15,7 @@ class TestCreateTests < MiniTest::Unit::TestCase
     fixture_log = File.dirname(__FILE__) + '/fixture/query.log'
     @queries = IndexTester::ReadLog.new(fixture_log).unique_selects
     @harvester = IndexTester::HarvestData.new(IndexTester::DataBase.new, @queries)
+    @tests = IndexTester::GenerateTests.new(@harvester)
   end
 
   def test_queries
@@ -21,5 +24,10 @@ class TestCreateTests < MiniTest::Unit::TestCase
     assert_equal 1, @harvester.scanned_counts[2]
     assert_equal 1, @harvester.returned_counts[2]
     assert_operator 50, :<, @harvester.rating(2)
+  end
+  def test_making_tests
+    test_code = @tests.test_code
+    File.open('generated_test.rb', 'w') {|f| f.puts test_code}
+    refute_equal '', test_code
   end
 end

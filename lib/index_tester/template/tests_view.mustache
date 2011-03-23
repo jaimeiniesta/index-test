@@ -1,0 +1,15 @@
+require_relative '../../lib/index_tester/query_rating'
+
+class QueryRatingTests < MiniTest::Unit::TestCase
+  include IndexTester::QueryRating
+
+  def test_queries
+    {{#looper}}
+      # For query: {{query}}
+      assert_operator 50, :<, query_rating(total_count:    {{total_count}},
+                                           no_indexes:     {{no_indexes}},
+                                           scanned_count:  {{scanned_count}},
+                                           returned_count: {{returned_count}})
+    {{/looper}}
+  end
+end

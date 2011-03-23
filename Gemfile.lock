@@ -15,6 +15,7 @@ GEM
     builder (2.1.2)
     i18n (0.5.0)
     mocha (0.9.12)
+    mustache (0.99.3)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -26,4 +27,5 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   mocha
+  mustache
   sqlite3-ruby

@@ -1,4 +1,5 @@
 require_relative '../../lib/index_tester/read_log'
+require_relative '../../lib/index_tester/query_rating'
 require_relative '../../lib/index_tester/harvest_data'
 
 class TestReadLog < MiniTest::Unit::TestCase
